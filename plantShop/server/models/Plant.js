@@ -10,7 +10,8 @@ export const PlantSchema = new Schema({
   details: { type: String, required: true },
   qty: { type: Number, required: true, min: 1 },
   stock: { type: Number, required: true },
-  creatorId: { type: Schema.Types.ObjectId, ref: 'Account' }
+  creatorId: { type: Schema.Types.ObjectId, ref: 'Account' },
+  deleted: { type: Boolean, default: false }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 PlantSchema.virtual('creator', {

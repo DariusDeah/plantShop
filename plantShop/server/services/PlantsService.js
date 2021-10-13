@@ -46,5 +46,19 @@ class PlantsService {
     await editedPlant.save()
     return editedPlant
   }
+
+  removePlant = async(plantId, plantBody) => {
+    const removedPlant = await this.getPlantById(plantId)
+    if (removedPlant.creatorId.toString() !== plantBody.creatorId.toString()) {
+      throw new Forbidden()
+    }
+    if (removedPlant.deleted === true) {
+      throw new BadRequest()
+    }
+
+    removedPlant.deleted = !removedPlant.deleted
+    await removedPlant.save()
+    return removedPlant
+  }
 }
 export const plantsService = new PlantsService()
