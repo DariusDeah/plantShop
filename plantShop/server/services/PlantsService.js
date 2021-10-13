@@ -9,6 +9,7 @@ class PlantsService {
 
   getPlantById = async(plantId) => {
     const plant = await dbContext.Plants.findById(plantId)
+    await plant.populate('creator', 'name picture')
     if (!plant) {
       throw new BadRequest()
     }
@@ -20,5 +21,7 @@ class PlantsService {
     await createdPlant.populate('creator')
     return createdPlant
   }
+
+  editPlant
 }
 export const plantsService = new PlantsService()

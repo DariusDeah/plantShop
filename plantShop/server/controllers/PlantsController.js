@@ -7,9 +7,10 @@ export class PlantsController extends BaseController {
     super('api/plants')
     this.router
       .get('', this.getAllPlants)
-      .get(':plantId', this.getPlantById)
+      .get('/:plantId', this.getPlantById)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createPlant)
+      .put('/:plantId', this.editPlant)
   }
 
  getAllPlants = async(req, res) => {
@@ -24,7 +25,7 @@ export class PlantsController extends BaseController {
   getPlantById = async(req, res) => {
     try {
       const plant = await plantsService.getPlantById(req.params.plantId)
-      res.sen(plant)
+      res.send(plant)
     } catch (error) {
       res.send(error)
     }
@@ -35,6 +36,16 @@ export class PlantsController extends BaseController {
       req.body.creatorId = req.userInfo.id
       const createdPlant = await plantsService.createPlant(req.body)
       res.send(createdPlant)
+    } catch (error) {
+      res.send(error)
+    }
+  }
+
+  editPlant = async(req, res) => {
+    try {
+      req.body.creatorId = req.userInfo.id
+      const editedPlant = await plantsService.editPlant(req.params.plantId, req.body)
+      res.send(editedPlant)
     } catch (error) {
       res.send(error)
     }
