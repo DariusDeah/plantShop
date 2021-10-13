@@ -9,6 +9,7 @@ class PlantsService {
   createPlant = async(plantBody) => {
     const createdPlant = await dbContext.Plants.create(plantBody)
     await createdPlant.populate('creator')
+    return createdPlant
   }
 }
 export const plantsService = new PlantsService()

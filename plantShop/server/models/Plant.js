@@ -14,7 +14,7 @@ export const PlantSchema = new Schema({
 
 PlantSchema.virtual('creator', {
   localField: 'creatorId',
-  foriegnField: '_id',
+  foreignField: '_id',
   justOne: true,
   ref: 'Account'
 })
