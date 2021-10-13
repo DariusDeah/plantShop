@@ -9,7 +9,7 @@ class DbContext {
   Account = mongoose.model('Account', AccountSchema);
   Profiles = mongoose.model('Profile', ProfileSchema, 'accounts');
 
-  Plants = mongoose.model('Items', PlantSchema)
+  Plants = mongoose.model('Plant', PlantSchema)
 
   Cart = mongoose.model('Cart', CartSchema)
 }
