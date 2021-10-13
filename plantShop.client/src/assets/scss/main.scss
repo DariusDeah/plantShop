@@ -3,12 +3,13 @@
 @import "./_overrides.scss";
 @import "./utilities.scss";
 @import "./loaders.scss";
+@import "./font.scss";
 
 #app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: $body-bg;
+  background-color: #f8f8f8;
 }
 
 main {
