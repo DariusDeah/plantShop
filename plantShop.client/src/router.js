@@ -7,14 +7,36 @@ function loadPage(page) {
 
 const routes = [
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: loadPage('LoginPage')
   },
   {
     path: '/home',
     name: 'Home',
-    component: loadPage('HomePage')
+    component: loadPage('HomePage'),
+    children: [
+      {
+        path: 'favorites',
+        name: 'Home.Favorites',
+        component: loadPage('FavoritePage')
+      },
+      {
+        path: 'new',
+        name: 'Home.New',
+        component: loadPage('NewPage')
+      },
+      {
+        path: 'indoor',
+        name: 'Home.Indoor',
+        component: loadPage('IndoorPage')
+      },
+      {
+        path: 'outdoor',
+        name: 'Home.Outdoor',
+        component: loadPage('OutdoorPage')
+      }
+    ]
   },
   {
     path: '/about',

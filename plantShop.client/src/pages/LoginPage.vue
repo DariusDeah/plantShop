@@ -21,7 +21,7 @@
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-10 ps-5">
-        <button class="button btn fw-bold ">
+        <button class="button btn fw-bold " @click="login()">
           Sign In
         </button>
       </div>
@@ -34,7 +34,12 @@
 
 <script>
 import CircleType from 'circletype'
-import { onMounted } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import { AuthService } from '../services/AuthService'
+import { useRouter } from 'vue-router'
+import { router } from '../router'
+import Pop from '../utils/Pop'
 
 export default {
   setup() {
@@ -43,7 +48,15 @@ export default {
     })
 
     return {
-
+      user: computed(() => AppState.user),
+      async login() {
+        try {
+          await AuthService.loginWithPopup()
+          router.push('home')
+        } catch (error) {
+          Pop.toast(error, 'please try again')
+        }
+      }
     }
   }
 }
