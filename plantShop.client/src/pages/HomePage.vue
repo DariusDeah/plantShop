@@ -40,7 +40,7 @@
     </div>
   </main>
   <div class="container-fluid">
-    <!-- <router-view /> -->
+    <router-view />
     <div class="row ">
       <Plants v-for="p in plants" :key="p.id" :plant="p" />
     </div>

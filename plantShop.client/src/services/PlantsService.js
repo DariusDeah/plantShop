@@ -9,5 +9,11 @@ class PlantsService {
     logger.log(res.data)
     AppState.plants = res.data.map(p => new PlantModel(p))
   }
+
+  async getPlantById(plantId) {
+    const res = await api.get(`api/plants/${plantId}`)
+    logger.log(res.data)
+    AppState.activePlant = res.data
+  }
 }
 export const plantsService = new PlantsService()

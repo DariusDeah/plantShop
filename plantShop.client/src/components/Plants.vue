@@ -1,7 +1,9 @@
 <template>
   <div class="col-6">
     <div class="card  mb-2">
-      <img class="card-img-top img-fluid" :src="plant.img" alt="">
+      <router-link :to="{name:'Plant',params:{plantId:plant.id}}">
+        <img class="card-img-top img-fluid" :src="plant.img" alt="">
+      </router-link>
       <div class="card-body">
         <h4 class="card-title">
           {{ plant.name }}
