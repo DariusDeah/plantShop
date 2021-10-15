@@ -28,7 +28,9 @@ export default {
       await plantsService.getPlantById(route.params.plantId)
     })
     return {
+
       plant: computed(() => AppState.activePlant)
+
     }
   }
 }

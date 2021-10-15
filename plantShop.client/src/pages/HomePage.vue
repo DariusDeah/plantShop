@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="container ">
-      <div class="row">
+      <div class="row fs-4">
         <ul class="d-flex p-3 list fw-bold text-muted">
           <li class="selectable" @click="favPage()">
             Favorites

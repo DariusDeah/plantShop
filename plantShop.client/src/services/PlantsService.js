@@ -11,6 +11,7 @@ class PlantsService {
   }
 
   async getPlantById(plantId) {
+    AppState.activePlant = {}
     const res = await api.get(`api/plants/${plantId}`)
     logger.log(res.data)
     AppState.activePlant = res.data

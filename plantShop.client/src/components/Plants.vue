@@ -1,6 +1,6 @@
 <template>
   <div class="col-sm-6 col-lg-3 p-1">
-    <div class="card card-size   m-2">
+    <div class="card card-size   mp-2">
       <router-link :to="{name:'Plant',params:{plantId:plant.id}}">
         <i class="mdi mdi-heart fs-2 ps-1"></i>
         <img class=" img-fluid p-3  img selectable " :src="plant.img" alt="">
