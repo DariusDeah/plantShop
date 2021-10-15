@@ -7,7 +7,7 @@ function loadPage(page) {
 
 const routes = [
   {
-    path: '/login',
+    path: '/',
     name: 'Login',
     component: loadPage('LoginPage')
   },

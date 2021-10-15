@@ -1,12 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-white px-3">
+  <nav class="navbar navbar-expand-lg bg-white nav-stick px-3  ">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <i class="fab fa-pagelines text-black fs-2"></i>
       </div>
     </router-link>
     <i
-      class="fas fa-bars text-black"
+      class="fas fa-align-left"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarText"
@@ -25,6 +25,15 @@
         </li>
       </ul>
 
+      <div class="input-group" style="width:40rem">
+        <i class="mdi mdi-magnify fs-2"></i>
+        <input type="search "
+               class="form-control rounded"
+               placeholder="Search"
+               aria-label="Search"
+               aria-describedby="search-addon"
+        />
+      </div>
       <span class="navbar-text">
         <button
           class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
@@ -121,5 +130,10 @@ a:hover {
 
 .navbar-toggler{
   color: black;
+}
+.nav-stick{
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 </style>

@@ -2,16 +2,23 @@
   <main v-if="!user.isAuthenticated">
     <login-page />
   </main>
-  <main v-else>
-    <div class="container">
-      <div class="row pt-3">
-        <h6>Good Morning, <span class="text-plant-green fs-2"> {{ user.name }} </span> </h6>
-      </div>
-    </div>
-    <div class="container">
-      <div class="row pt-3">
-        <h4>search bar</h4>
-      </div>
+  <main v-else class="Bree-Regular">
+    <div class="container-fluid">
+      <section class="hero">
+        <div class="row pt-3 ps-5 pt-5">
+          <div class="  col-md-4 text-bg ps-5 ">
+            <h5 class="fw-bolder fs-1">
+              Good Morning,<br> <span class="text-plant-green fs-1"> {{ user.name }} </span>
+            </h5>
+            <div class="row mt-5">
+              <h3 class="text-center">
+                Qoute of the day
+              </h3>
+              <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, iste!</h4>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
     <div class="container">
       <div class="row">
@@ -39,7 +46,20 @@
       </div>
     </div>
   </main>
-  <div class="container-fluid">
+  <div class="container">
+    <router-view />
+    <div class="row ">
+      <Plants v-for="p in plants" :key="p.id" :plant="p" />
+    </div>
+  </div>
+  <section class="container banner px-1 mt-4 mb-4 ">
+    <div class="row  banner-row ">
+      <div class="col d-flex  p-3 fw-bolder justify-content-center ">
+        <span class="art ">ART</span> <span>|</span> <span class="decor ">DECOR</span>
+      </div>
+    </div>
+  </section>
+  <div class="container">
     <router-view />
     <div class="row ">
       <Plants v-for="p in plants" :key="p.id" :plant="p" />
@@ -99,6 +119,20 @@ export default {
     }
   }
 }
+.hero{
+    background-image: url(src/assets/img/muneeb-syed-x9NfeD3FpsE-unsplash.jpg);
+    background-size: cover;
+    height: 80vh;
+    background-position: center;
+    // background-repeat: none;
+
+  }
+@media only screen and (max-width: 600px) {
+  .hero{
+    height: 30vh;
+  }
+
+}
 .list{
   list-style: none;
 justify-content: space-between;
@@ -106,5 +140,22 @@ justify-content: space-between;
 color: black !important;
 }
 }
+.text-bg{
+  background-color: rgba(255, 255, 255, 0.945);
+height: 30rem;
 
+}
+.banner{
+  font-size: 8rem !important;
+  letter-spacing: 2rem;
+}
+.banner-row{
+  border: solid black 2px;
+}
+// .decor{
+//   border-right:solid black 5px ;
+// }
+// .art{
+//   border-left:solid black 5px ;
+// }
 </style>
