@@ -5,7 +5,7 @@
   <main v-else class="Bree-Regular">
     <div class="container-fluid">
       <section class="hero">
-        <div class="row pt-3 ps-5 pt-5">
+        <div class="row pt-3 ps-5 text-overlay pt-5">
           <div class="  col-md-4 text-bg ps-5 ">
             <h5 class="fw-bolder fs-1">
               Good Morning,<br> <span class="text-plant-green fs-1"> {{ user.name }} </span>
@@ -124,14 +124,18 @@ export default {
     background-size: cover;
     height: 80vh;
     background-position: center;
-    // background-repeat: none;
-
   }
 @media only screen and (max-width: 600px) {
   .hero{
     height: 30vh;
   }
-
+.text-overlay{
+  padding: 0 !important;
+  visibility: hidden;
+}
+.banner-row{
+  width: auto;
+}
 }
 .list{
   list-style: none;
@@ -146,16 +150,11 @@ height: 30rem;
 
 }
 .banner{
-  font-size: 8rem !important;
+  font-size: 8rem ;
   letter-spacing: 2rem;
 }
 .banner-row{
   border: solid black 2px;
 }
-// .decor{
-//   border-right:solid black 5px ;
-// }
-// .art{
-//   border-left:solid black 5px ;
-// }
+
 </style>
