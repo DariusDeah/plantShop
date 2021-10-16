@@ -1,5 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { plantsService } from '../services/PlantsService'
+import { reviewsService } from '../services/ReviewsService'
 import BaseController from '../utils/BaseController'
 
 export class PlantsController extends BaseController {
@@ -61,4 +62,6 @@ export class PlantsController extends BaseController {
       res.send(error)
     }
   }
+
+  // ----
 }

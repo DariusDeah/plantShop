@@ -12,6 +12,7 @@ export const PlantSchema = new Schema({
   stock: { type: Number, required: true },
   creatorId: { type: Schema.Types.ObjectId, ref: 'Account' },
   deleted: { type: Boolean, default: false }
+
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 PlantSchema.virtual('creator', {
