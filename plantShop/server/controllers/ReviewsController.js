@@ -1,4 +1,5 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
+import { plantsService } from '../services/PlantsService'
 import { reviewsService } from '../services/ReviewsService'
 import BaseController from '../utils/BaseController'
 
@@ -9,6 +10,7 @@ export class ReviewsController extends BaseController {
       .get('', this.getReviews)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createReview)
+      .put('/:reviewId', this.editReview)
   }
 
    getReviews = async(req, res, next) => {
@@ -25,6 +27,16 @@ export class ReviewsController extends BaseController {
       req.body.creatorId = req.userInfo.id
       const createdReview = await reviewsService.createReview(req.body)
       res.send(createdReview)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  editReview = async(req, res, next) => {
+    try {
+      req.body.creatorId = req.userInfo.id
+      const editedReview = await reviewsService.editReview(req.params.reviewId, req.body)
+      res.send(editedReview)
     } catch (error) {
       next(error)
     }

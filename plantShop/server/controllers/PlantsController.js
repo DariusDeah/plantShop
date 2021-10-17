@@ -9,20 +9,23 @@ export class PlantsController extends BaseController {
     this.router
       .get('', this.getAllPlants)
       .get('/:plantId', this.getPlantById)
+      .get('/:plantId/reviews', this.getPlantReviews)
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createPlant)
       .put('/:plantId', this.editPlant)
       .delete('/:plantId', this.removePlant)
   }
 
- getAllPlants = async(req, res) => {
-   try {
-     const plants = await plantsService.getplants()
-     res.status(200).send(plants)
-   } catch (error) {
-     res.send(error)
-   }
- }
+  getAllPlants = async(req, res) => {
+    try {
+      // eslint-disable-next-line prefer-const
+      let query = { ...req.query }
+      const plants = await plantsService.getplants(query)
+      res.status(200).send(plants)
+    } catch (error) {
+      res.send(error)
+    }
+  }
 
   getPlantById = async(req, res) => {
     try {
@@ -64,4 +67,12 @@ export class PlantsController extends BaseController {
   }
 
   // ----
+  getPlantReviews = async(req, res, next) => {
+    try {
+      const plantReviews = await reviewsService.getPlantReviews(req.param.plantId)
+      res.send(plantReviews)
+    } catch (error) {
+      next(error)
+    }
+  }
 }

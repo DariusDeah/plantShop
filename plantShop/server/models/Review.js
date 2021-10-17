@@ -6,7 +6,8 @@ export const ReviewSchema = new Schema({
   title: { type: String },
   body: { type: String, required: true },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
-  plantId: { type: Schema.Types.ObjectId, required: true, ref: 'Plant' }
+  plantId: { type: Schema.Types.ObjectId, required: true, ref: 'Plant' },
+  deleted: { type: Boolean, default: false }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
 ReviewSchema.virtual('creator', {

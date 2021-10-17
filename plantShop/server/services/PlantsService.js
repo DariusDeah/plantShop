@@ -2,7 +2,14 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest, Forbidden } from '../utils/Errors'
 
 class PlantsService {
-  getplants = async(query = {}) => {
+  getplants = async(query) => {
+    const excludedFields = ['page', 'sort', 'limit', 'fields']
+    excludedFields.forEach(ef => delete query[ef])
+
+    if (query.sort) {
+      query = query.sort()
+    }
+
     const plants = await dbContext.Plants.find(query)
     return plants
   }

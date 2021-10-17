@@ -5,7 +5,7 @@
         <i class="mdi mdi-heart fs-2 ps-1"></i>
         <img class=" img-fluid p-3  img selectable " :src="plant.img" alt="">
       </router-link>
-      <div class="card-body">
+      <div class="card-body bg">
         <h4 class="card-title">
           {{ plant.name }}
         </h4>
@@ -47,5 +47,14 @@ z-index: 1;
   position: absolute;
  bottom: 2rem;
  right: 2rem;
+}
+.card{
+  border: none;
+  max-height: 100%;
+  max-width: 100%;
+}
+.card img{
+  object-fit: scale-down;
+height: 100%;
 }
 </style>
