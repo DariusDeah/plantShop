@@ -60,7 +60,7 @@
             {{ plant.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur nostrum quaerat ratione voluptates ut soluta officia corporis, sequi reiciendis? Iusto voluptatum, molestias sed sequi eveniet esse dolor consequatur natus corporis debitis doloremque odit, sunt sint. Eum repudiandae minus magnam! Eos ducimus culpa fugiat esse eius vel enim quas deleniti.
           </p>
         </div>
-        <div class="row">
+        <div class="row" v-if="plant.details">
           <div class="col-3">
             <i class="mdi mdi-sprout fs-2 text-plant-green"></i> <h5>{{ plant.details.days }}</h5>
           </div>
@@ -92,8 +92,11 @@
     </h3>
 
     <div class="row">
-      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh">
+      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh" v-if="reviews.plantId === plant.id">
         <Reviews v-for="r in reviews" :key="r.id" :reviews="r" />
+      </div>
+      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh" v-else>
+        <h3>There are currently no reviews for this plant why not add one?</h3>
       </div>
     </div>
   </div>

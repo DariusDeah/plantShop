@@ -1,8 +1,8 @@
 <template>
   <div class="col-sm-6 col-lg-3 p-1">
     <div class="card card-line m-3 card-size   mp-2">
+      <i class="mdi mdi-heart fs-1 ps-1 btn text-danger"></i>
       <router-link :to="{name:'Plant',params:{plantId:plant.id}}">
-        <i class="mdi mdi-heart fs-3 ps-1"></i>
         <img class=" img-fluid img selectable" :src="plant.imgs[0]" alt="">
       </router-link>
       <div class="card-body bg">
@@ -65,4 +65,10 @@ height: 100%;
 /* .card:hover{
 background-color: black;
 } */
+.mdi-heart{
+  z-index: 1;
+}
+.mdi-heart:hover{
+  color: #fd0101 !important;
+}
 </style>
