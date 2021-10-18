@@ -34,7 +34,7 @@ export default {
 }
 </script>
 
-<style >
+<style   >
 .card-size{
   height: inherit;
 }
@@ -44,9 +44,15 @@ z-index: 1;
 }
 .mdi-cart-plus{
   position: absolute;
- bottom: 2rem;
- right: 2rem;
+ bottom: 6rem;
+ right: 0.5rem;
+  z-index: 2;
 }
+.mdi-cart-plus:hover{
+  background-color: white !important;
+  color: black !important;
+}
+
 .card{
   border: none;
   max-height: 100%;
@@ -65,10 +71,9 @@ height: 100%;
 /* .card:hover{
 background-color: black;
 } */
-.mdi-heart{
-  z-index: 1;
-}
+
 .mdi-heart:hover{
   color: #fd0101 !important;
 }
+
 </style>
