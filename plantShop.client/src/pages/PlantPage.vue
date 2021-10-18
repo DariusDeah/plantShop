@@ -60,6 +60,24 @@
             {{ plant.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur nostrum quaerat ratione voluptates ut soluta officia corporis, sequi reiciendis? Iusto voluptatum, molestias sed sequi eveniet esse dolor consequatur natus corporis debitis doloremque odit, sunt sint. Eum repudiandae minus magnam! Eos ducimus culpa fugiat esse eius vel enim quas deleniti.
           </p>
         </div>
+        <div class="row">
+          <div class="col-3">
+            <i class="mdi mdi-sprout fs-2 text-plant-green"></i> <h5>{{ plant.details.days }}</h5>
+          </div>
+          <div class="col-3">
+            <i class="mdi mdi-water fs-2 text-primary"></i>
+            <h5>{{ plant.details.water }}</h5>
+          </div>
+          <div class="col-3">
+            <h5>Size:</h5>
+            <h4>{{ plant.details.size }}</h4>
+          </div>
+
+          <div class="col-3">
+            <h5>Height:</h5>
+            <h4>{{ plant.details.height }}</h4>
+          </div>
+        </div>
       </div>
     </div>
   </div>
