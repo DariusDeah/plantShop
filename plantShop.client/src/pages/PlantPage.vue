@@ -47,11 +47,33 @@
           <h2>${{ plant.price }}</h2>
         </div>
         <div class="row">
-          <button class="btn cart-btn text-white p-3 mt-4 m fw-bold">
+          <button class="btn cart-btn text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
             ${{ plant.price }} - Add to cart
           </button>
         </div>
-
+        <div class="modal fade x" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                  Cart <i class="mdi mdi-cart fs-2"></i>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- TODO v-for items in cart -->
+              </div>
+              <div class="modal-footer ">
+                <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">
+                  Close
+                </button>
+                <button type="button" class="btn cart-btn text-light">
+                  Go to cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row my-4 line-btm pb-3">
           <div class="col-lg-3 line-right text-center ">
             <h5>Details</h5>
@@ -174,6 +196,9 @@ border-bottom: solid .5px rgb(184, 182, 182);
     padding-right: 12rem !important;
   }
 
+}
+.x{
+transform: translateX(30rem) !important;
 }
 
 </style>
