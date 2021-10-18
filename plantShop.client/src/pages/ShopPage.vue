@@ -1,0 +1,47 @@
+<template>
+  <div class="container ">
+    <div class="row">
+      <div class="col-12 d-flex header">
+        <h1 class="text-plant-green fw-bold page-title">
+          Plant Shop
+        </h1>
+        <h3>Indoor</h3>
+        <h3>Outdoor</h3>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row p-5 ">
+      <Plants v-for="p in plants" :key="p.id" :plant="p" />
+    </div>
+  </div>
+</template>
+
+<script>
+import { computed, onMounted } from '@vue/runtime-core'
+import { AppState } from '../AppState'
+import { plantsService } from '../services/PlantsService'
+export default {
+  setup() {
+    onMounted(async() => {
+      await plantsService.getPlants()
+    })
+    return {
+      plants: computed(() => AppState.plants)
+    }
+  }
+}
+</script>
+
+<style>
+/* .shop-hero{
+  background-image: url(src/assets/img/kiki-siepel-rZPk8H4v1d0-unsplash.jpg);
+  background-size:contain;
+    height: 80vh;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+.page-title{
+  text-decoration: underline green;
+}
+</style>

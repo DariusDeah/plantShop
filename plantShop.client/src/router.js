@@ -49,6 +49,11 @@ const routes = [
     component: loadPage('PlantPage')
   },
   {
+    path: '/shop',
+    name: 'Shop',
+    component: loadPage('ShopPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),

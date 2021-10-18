@@ -6,7 +6,7 @@ export const PlantSchema = new Schema({
   price: { type: Number, required: true },
   description: { type: String, required: true },
   category: [{ type: String, enum: ['New', 'Popular', 'Indoor', 'Outdoor', 'Sale', 'Low stock'], required: true }],
-  img: { type: String, required: true, trim: true },
+  imgs: [{ type: String, required: true, trim: true }],
   details: {
     size: { type: String, required: true, enum: ['Large', 'Med', 'Small'] },
     height: { type: String, required: true },

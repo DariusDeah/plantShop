@@ -7,7 +7,7 @@ export class PlantModel {
     this.description = plantData.description
     this.details = plantData.details
     this.id = plantData.id
-    this.img = plantData.img
+    this.imgs = plantData.imgs
     this.name = plantData.name
     this.price = plantData.price
     this.qty = plantData.qty

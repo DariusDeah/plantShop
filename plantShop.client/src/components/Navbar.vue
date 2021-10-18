@@ -22,8 +22,8 @@
           <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase">
             About
           </router-link>
-          <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase">
-            Plants
+          <router-link :to="{ name: 'Shop' }" class="btn  selectable text-uppercase">
+            Shop
           </router-link>
           <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase">
             Decor
@@ -31,7 +31,7 @@
         </li>
       </ul>
 
-      <div class="input-group" style="width:40rem">
+      <!-- <div class="input-group" style="width:40rem">
         <i class="mdi mdi-magnify fs-2"></i>
         <input type="search "
                class="form-control rounded"
@@ -39,7 +39,7 @@
                aria-label="Search"
                aria-describedby="search-addon"
         />
-      </div>
+      </div> -->
       <span class="navbar-text">
         <button
           class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0"
