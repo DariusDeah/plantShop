@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-lg-6 p-5" v-if="plant">
         <div class="row  ">
-          <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant">
-            <img :src="plant.imgs[0]" alt="" class="card my-2 selectable">
+          <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant ">
+            <img :src="plant.imgs" alt="" class="card my-2 selectable">
             <img :src="plant.imgs[1]" alt="" class="card my-2 selectable">
             <img :src="plant.imgs[2]" alt="" class="card my-2 selectable">
             <img :src="plant.imgs[3]" alt="" class="card my-2 selectable">
@@ -12,13 +12,13 @@
           </div>
           <div class="col-lg-8">
             <img :src="plant.imgs" alt="" class="img-fluid  p-2">
-            <p class="text-light fw-bold">
-              <span class="category " v-if="plant">
-                {{ plant.category }}
+            <p class="text-light fw-bold ps-2 pt-2">
+              <span class="category text-light selectable" v-if="plant">
+                {{ plant.category[0] }}
               </span>
             </p>
-            <span class="category" v-if="plant">
-              {{ plant.category }}
+            <span class="category" v-if="plant.category > 1">
+              {{ plant.category[1] }}
             </span>
           </div>
         </div>
@@ -47,13 +47,22 @@
     </div>
   </div>
   <div class="container">
+    <div class="row">
+    </div>
     <h3>Reviews</h3>
+
+    <div class="row">
+      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh">
+        <Reviews v-for="r in reviews" :key="r.id" :reviews="r" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { computed, onMounted } from '@vue/runtime-core'
 import { plantsService } from '../services/PlantsService'
+import { reviewsService } from '../services/ReviewsService'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 export default {
@@ -61,10 +70,12 @@ export default {
     const route = useRoute()
     onMounted(async() => {
       await plantsService.getPlantById(route.params.plantId)
+      await reviewsService.getReviewsByPlant(route.params.plantId)
     })
     return {
 
-      plant: computed(() => AppState.activePlant)
+      plant: computed(() => AppState.activePlant),
+      reviews: computed(() => AppState.reviews)
 
     }
   }
@@ -97,4 +108,5 @@ border-bottom: solid .5px rgb(184, 182, 182);
   }
 
 }
+
 </style>
