@@ -69,7 +69,7 @@ export class PlantsController extends BaseController {
   // ----
   getPlantReviews = async(req, res, next) => {
     try {
-      const plantReviews = await reviewsService.getPlantReviews(req.param.plantId)
+      const plantReviews = await reviewsService.getPlantReviews(req.params.plantId)
       res.send(plantReviews)
     } catch (error) {
       next(error)

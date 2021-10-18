@@ -4,6 +4,7 @@ export class ReviewModel {
     this.title = review.title
     this.body = review.body
     this.plantId = review.plantId
+    this.id = review.id
     this.creator = review.creator
     this.createdAt = review.createdAt
   }

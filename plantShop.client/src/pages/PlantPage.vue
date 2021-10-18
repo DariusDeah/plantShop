@@ -91,11 +91,13 @@
       </button>
     </h3>
 
-    <div class="row">
-      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh" v-if="reviews.plantId === plant.id">
+    <div class="row" v-if="reviews[0]">
+      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh" v-if="reviews[0].plantId === plant.id">
         <Reviews v-for="r in reviews" :key="r.id" :reviews="r" />
       </div>
-      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh" v-else>
+    </div>
+    <div class="row" v-else>
+      <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh">
         <h3>There are currently no reviews for this plant why not add one?</h3>
       </div>
     </div>

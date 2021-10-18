@@ -8,7 +8,7 @@ class ReviewsService {
   }
 
   getPlantReviews = async(plantId) => {
-    const plantReviews = await dbContext.Reviews.find(plantId).populate('creator')
+    const plantReviews = await dbContext.Reviews.find({ plantId: plantId }).populate('creator')
     if (!plantReviews) {
       throw new BadRequest()
     }
