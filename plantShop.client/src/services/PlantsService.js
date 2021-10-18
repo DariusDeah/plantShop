@@ -17,4 +17,5 @@ class PlantsService {
     AppState.activePlant = res.data
   }
 }
+
 export const plantsService = new PlantsService()

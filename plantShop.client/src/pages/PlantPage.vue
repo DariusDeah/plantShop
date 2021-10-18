@@ -3,23 +3,40 @@
     <div class="row">
       <div class="col-lg-6 p-5" v-if="plant">
         <div class="row  ">
-          <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant ">
-            <img :src="plant.imgs" alt="" class="card my-2 selectable">
-            <img :src="plant.imgs[1]" alt="" class="card my-2 selectable">
-            <img :src="plant.imgs[2]" alt="" class="card my-2 selectable">
-            <img :src="plant.imgs[3]" alt="" class="card my-2 selectable">
-            <img :src="plant.imgs[4]" alt="" class="card my-2 selectable">
+          <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant.imgs ">
+            <img :src="plant.imgs" alt="" class="card my-2 selectable" @click=" changeImage()">
+            <img :src="plant.imgs[1]" alt="" class="card my-2 selectable" @click=" changeImage1()">
+            <img :src="plant.imgs[2]" alt="" class="card my-2 selectable" @click=" changeImage2()">
+            <img :src="plant.imgs[3]" alt="" class="card my-2 selectable" @click=" changeImage3()">
+            <img :src="plant.imgs[4]" alt="" class="card my-2 selectable" @click=" changeImage4()">
           </div>
-          <div class="col-lg-8">
-            <img :src="plant.imgs" alt="" class="img-fluid  p-2">
-            <p class="text-light fw-bold ps-2 pt-2">
-              <span class="category text-light selectable" v-if="plant">
-                {{ plant.category[0] }}
-              </span>
-            </p>
-            <span class="category" v-if="plant.category > 1">
-              {{ plant.category[1] }}
-            </span>
+          <div class="col-lg-8" v-if="plant.imgs">
+            <!-- TODO v-if the current plant id is in the user favorties -->
+            <i class="mdi mdi-heart fs-1 text-danger ps-3"></i>
+            <img :src="plant.imgs[0]" alt="" class="img-fluid  p-2" id="current-img">
+            <div class="row ps-3">
+              <div class="col-4 p-0">
+                <p class="text-light fw-bold  pt-2">
+                  <span class="category text-light selectable" v-if="plant.category">
+                    {{ plant.category[0] }}
+                  </span>
+                </p>
+              </div>
+              <div class="col-4">
+                <p class="text-light fw-bold  pt-2">
+                  <span class="category text-light selectable" v-if="plant.category.length > 1">
+                    {{ plant.category[1] }}
+                  </span>
+                </p>
+              </div>
+              <div class="col-4">
+                <p class="text-light fw-bold ps-2 pt-2">
+                  <span class="category text-light selectable" v-if="plant.category.length >2">
+                    {{ plant.category[2] }}
+                  </span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -39,9 +56,9 @@
           <div class="col-lg-3 line-right text-center ">
             <h5>Details</h5>
           </div>
-          <div class="col-lg-9">
+          <p class="col-lg-9  ">
             {{ plant.description }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aspernatur nostrum quaerat ratione voluptates ut soluta officia corporis, sequi reiciendis? Iusto voluptatum, molestias sed sequi eveniet esse dolor consequatur natus corporis debitis doloremque odit, sunt sint. Eum repudiandae minus magnam! Eos ducimus culpa fugiat esse eius vel enim quas deleniti.
-          </div>
+          </p>
         </div>
       </div>
     </div>
@@ -49,7 +66,12 @@
   <div class="container">
     <div class="row">
     </div>
-    <h3>Reviews</h3>
+    <h3>
+      Reviews
+      <button class="btn btn-primary text-white fw-bold">
+        + leave a review
+      </button>
+    </h3>
 
     <div class="row">
       <div class="card-body p-3 overflow-auto inner-scroll" style="height:100vh">
@@ -65,18 +87,40 @@ import { plantsService } from '../services/PlantsService'
 import { reviewsService } from '../services/ReviewsService'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
+import Pop from '../utils/Pop'
 export default {
   setup() {
     const route = useRoute()
+    // eslint-disable-next-line prefer-const
     onMounted(async() => {
       await plantsService.getPlantById(route.params.plantId)
       await reviewsService.getReviewsByPlant(route.params.plantId)
     })
     return {
-
       plant: computed(() => AppState.activePlant),
-      reviews: computed(() => AppState.reviews)
+      reviews: computed(() => AppState.reviews),
 
+      changeImage1() {
+        try {
+          this.plant.imgs[0] = this.plant.imgs[1]
+        } catch (error) {
+          Pop.toast('error', error)
+        }
+      },
+      changeImage2() {
+        this.plant.imgs[0] = this.plant.imgs[2]
+      },
+      changeImage3() {
+        this.plant.imgs[0] = this.plant.imgs[3]
+        console.log(this.plant.imgs)
+      },
+      changeImage4() {
+        this.plant.imgs[0] = this.plant.imgs[4]
+        console.log(this.plant.imgs)
+      },
+      changeImage() {
+        this.plant.imgs[0] = this.plant.imgs[4]
+      }
     }
   }
 }

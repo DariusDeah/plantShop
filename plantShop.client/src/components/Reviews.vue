@@ -9,7 +9,7 @@
       </p>
       <div>
         <p class="text-muted m-0 ">
-          {{ reviews.createdAt }}
+          {{ reviews.createdAt.slice(0,10) }}
         </p>
         <p class="fw-bold">
           {{ reviews.rating }}
