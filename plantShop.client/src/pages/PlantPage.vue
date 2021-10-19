@@ -47,7 +47,7 @@
           <h2>${{ plant.price }}</h2>
         </div>
         <div class="row">
-          <button class="btn cart-btn text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button class="btn cart-btn text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addToCart()">
             ${{ plant.price }} - Add to cart
           </button>
         </div>
@@ -130,6 +130,7 @@
 import { computed, onMounted } from '@vue/runtime-core'
 import { plantsService } from '../services/PlantsService'
 import { reviewsService } from '../services/ReviewsService'
+import { cartService } from '../services/CartService'
 import { useRoute } from 'vue-router'
 import { AppState } from '../AppState'
 import Pop from '../utils/Pop'
@@ -165,6 +166,13 @@ export default {
       },
       changeImage() {
         this.plant.imgs[0] = this.plant.imgs[4]
+      },
+      async addToCart() {
+        try {
+          await cartService.addCart(route.params.plantId)
+        } catch (error) {
+          Pop.toast('error', error)
+        }
       }
     }
   }

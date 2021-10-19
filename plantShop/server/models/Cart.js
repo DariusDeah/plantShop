@@ -15,3 +15,10 @@ CartSchema.virtual('creator', {
   justOne: true,
   ref: 'Account'
 })
+
+CartSchema.virtual('item', {
+  localField: 'itemId',
+  foreignField: '_id',
+  justOne: true,
+  ref: 'Plant' || 'Art'
+})
