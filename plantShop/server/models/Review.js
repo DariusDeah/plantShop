@@ -16,3 +16,5 @@ ReviewSchema.virtual('creator', {
   justOne: true,
   ref: 'Account'
 })
+// FIXME
+ReviewSchema.index({ plantId: 1, creator1: 1 }, { unique: true })

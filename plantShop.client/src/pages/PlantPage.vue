@@ -5,10 +5,10 @@
         <div class="row  ">
           <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant.imgs ">
             <img :src="plant.imgs" alt="" class="card my-2 selectable" @click=" changeImage()">
-            <img :src="plant.imgs[1]" alt="" class="card my-2 selectable" @click=" changeImage1()">
-            <img :src="plant.imgs[2]" alt="" class="card my-2 selectable" @click=" changeImage2()">
-            <img :src="plant.imgs[3]" alt="" class="card my-2 selectable" @click=" changeImage3()">
-            <img :src="plant.imgs[4]" alt="" class="card my-2 selectable" @click=" changeImage4()">
+            <img :src="plant.imgs[1]" alt="" class="card my-2 selectable" @click=" changeImage(1)">
+            <img :src="plant.imgs[2]" alt="" class="card my-2 selectable" @click=" changeImage(2)">
+            <img :src="plant.imgs[3]" alt="" class="card my-2 selectable" @click=" changeImage(3)">
+            <img :src="plant.imgs[4]" alt="" class="card my-2 selectable" @click=" changeImage(4)">
           </div>
           <div class="col-lg-8" v-if="plant.imgs">
             <!-- TODO v-if the current plant id is in the user favorties -->
@@ -138,34 +138,23 @@ export default {
   setup() {
     const route = useRoute()
     // eslint-disable-next-line prefer-const
+    let currentImg = null
+    // eslint-disable-next-line prefer-const
     onMounted(async() => {
       await plantsService.getPlantById(route.params.plantId)
       await reviewsService.getReviewsByPlant(route.params.plantId)
     })
     return {
+      currentImg,
       plant: computed(() => AppState.activePlant),
       reviews: computed(() => AppState.reviews),
 
-      changeImage1() {
+      changeImage(i) {
         try {
-          this.plant.imgs[0] = this.plant.imgs[1]
+          this.plant.imgs[0] = this.plant.imgs[i]
         } catch (error) {
           Pop.toast('error', error)
         }
-      },
-      changeImage2() {
-        this.plant.imgs[0] = this.plant.imgs[2]
-      },
-      changeImage3() {
-        this.plant.imgs[0] = this.plant.imgs[3]
-        console.log(this.plant.imgs)
-      },
-      changeImage4() {
-        this.plant.imgs[0] = this.plant.imgs[4]
-        console.log(this.plant.imgs)
-      },
-      changeImage() {
-        this.plant.imgs[0] = this.plant.imgs[4]
       },
       async addToCart() {
         try {

@@ -11,6 +11,7 @@ export class AccountController extends BaseController {
 
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .post('/:accountId/favorites', this.addToFavorites)
   }
 
   async getUserAccount(req, res, next) {
@@ -26,6 +27,15 @@ export class AccountController extends BaseController {
     try {
       const cart = await cartService.getCart(req.params.accountId)
       res.send(cart)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async addToFavorites(req, res, next) {
+    try {
+      const favorite = await accountService.addToFavs()
+      res.send(favorite)
     } catch (error) {
       next(error)
     }
