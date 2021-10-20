@@ -4,7 +4,7 @@
       <div class="col-lg-6 p-5" v-if="plant">
         <div class="row  ">
           <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant.imgs ">
-            <img :src="plant.imgs" alt="" class="card my-2 selectable" @click=" changeImage()">
+            <img :src="plant.imgs" alt="" class="card my-2 selectable" @click=" changeImage(0)">
             <img :src="plant.imgs[1]" alt="" class="card my-2 selectable" @click=" changeImage(1)">
             <img :src="plant.imgs[2]" alt="" class="card my-2 selectable" @click=" changeImage(2)">
             <img :src="plant.imgs[3]" alt="" class="card my-2 selectable" @click=" changeImage(3)">
@@ -13,7 +13,7 @@
           <div class="col-lg-8" v-if="plant.imgs">
             <!-- TODO v-if the current plant id is in the user favorties -->
             <i class="mdi mdi-heart fs-1 text-danger ps-3"></i>
-            <img :src="plant.imgs[0]" alt="" class="img-fluid  p-2" id="current-img">
+            <img :src="currentImg" alt="" class="img-fluid  p-2" id="current-img">
             <div class="row ps-3">
               <div class="col-4 p-0">
                 <p class="text-light fw-bold  pt-2">
@@ -138,20 +138,20 @@ export default {
   setup() {
     const route = useRoute()
     // eslint-disable-next-line prefer-const
-    let currentImg = null
     // eslint-disable-next-line prefer-const
     onMounted(async() => {
       await plantsService.getPlantById(route.params.plantId)
       await reviewsService.getReviewsByPlant(route.params.plantId)
     })
+
     return {
-      currentImg,
       plant: computed(() => AppState.activePlant),
       reviews: computed(() => AppState.reviews),
+      currentImg: computed(() => AppState.currentImg),
 
-      changeImage(i) {
+      async changeImage(i) {
         try {
-          this.plant.imgs[0] = this.plant.imgs[i]
+          await plantsService.changeImg(i)
         } catch (error) {
           Pop.toast('error', error)
         }

@@ -11,10 +11,8 @@
               Good Morning,<br> <span class="text-plant-green fs-1"> {{ user.name }} </span>
             </h5>
             <div class="row mt-5">
-              <h3 class="text-center">
-                Qoute of the day
-              </h3>
-              <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat, iste!</h4>
+              <h3>{{ qoute.text }}</h3>
+              <p>-{{ qoute.author }}</p>
             </div>
           </div>
         </div>
@@ -74,12 +72,14 @@ import LoginPage from './LoginPage.vue'
 import FeaturedPlant from '../components/FeaturedPlant.vue'
 import { router } from '../router'
 import { plantsService } from '../services/PlantsService'
+import { qouteService } from '../services/QouteService'
 export default {
   components: { LoginPage, FeaturedPlant },
   name: 'Home',
   setup() {
     onMounted(async() => {
       await plantsService.getPlants()
+      await qouteService.getQoutes()
     })
     return {
       user: computed(() => AppState.user),
@@ -95,7 +95,8 @@ export default {
       async outdoorPage() {
         router.push({ name: 'Home.Outdoor' })
       },
-      plants: computed(() => AppState.plants)
+      plants: computed(() => AppState.plants),
+      qoute: computed(() => AppState.qoute)
     }
   }
 }

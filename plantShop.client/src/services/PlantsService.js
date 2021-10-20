@@ -15,6 +15,11 @@ class PlantsService {
     const res = await api.get(`api/plants/${plantId}`)
     logger.log(res.data)
     AppState.activePlant = res.data
+    AppState.currentImg = res.data.imgs[0]
+  }
+
+  async changeImg(index) {
+    AppState.currentImg = AppState.activePlant.imgs[index]
   }
 }
 
