@@ -1,5 +1,7 @@
 import { dbContext } from '../db/DbContext'
+import { DEFUALT_EXPIRATION, redisClient } from '../RedisHandler'
 import { BadRequest, Forbidden } from '../utils/Errors'
+import { logger } from '../utils/Logger'
 
 class PlantsService {
   getplants = async(query) => {
@@ -9,6 +11,15 @@ class PlantsService {
     if (query.sort) {
       query = query.sort()
     }
+
+    if (redisClient.get('plants')) {
+      const plants = await redisClient.get('plants')
+      logger.log('HIT')
+      return plants
+    }
+    // if (redisClient.get('plants') === false) {
+    //   redisClient.setex('plants', DEFUALT_EXPIRATION, JSON.stringify(plants))
+    // }
 
     const plants = await dbContext.Plants.find(query)
     return plants

@@ -1,7 +1,9 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
+import { redisClient, DEFUALT_EXPIRATION } from '../RedisHandler'
 import { plantsService } from '../services/PlantsService'
 import { reviewsService } from '../services/ReviewsService'
 import BaseController from '../utils/BaseController'
+import { logger } from '../utils/Logger'
 
 export class PlantsController extends BaseController {
   constructor() {
@@ -16,12 +18,12 @@ export class PlantsController extends BaseController {
       .delete('/:plantId', this.removePlant)
   }
 
-  getAllPlants = async(req, res) => {
+  getAllPlants = async(req, res, next) => {
     try {
       const plants = await plantsService.getplants({ ...req.query })
       res.status(200).send(plants)
     } catch (error) {
-      res.send(error)
+      next(error)
     }
   }
 
@@ -34,13 +36,15 @@ export class PlantsController extends BaseController {
     }
   }
 
-  createPlant = async(req, res) => {
+  createPlant = async(req, res, next) => {
     try {
+      // Auth
       req.body.creatorId = req.userInfo.id
+
       const createdPlant = await plantsService.createPlant(req.body)
       res.send(createdPlant)
     } catch (error) {
-      res.send(error)
+      next(error)
     }
   }
 
