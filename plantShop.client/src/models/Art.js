@@ -1,4 +1,4 @@
-export class artModel {
+export class ArtModel {
   constructor(artData) {
     this.category = artData.category
     this.createdAt = artData.createdAt

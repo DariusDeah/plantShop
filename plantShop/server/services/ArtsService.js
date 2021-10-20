@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 
 class ArtsService {
   async getAllArts(query) {
-    // const excludedFields = ['page', 'sort', 'limit', 'fields']
-    // excludedFields.forEach(ef => delete query[ef])
+    const excludedFields = ['page', 'sort', 'limit', 'fields']
+    excludedFields.forEach(ef => delete query[ef])
     const arts = await dbContext.Art.find(query)
     return arts
   }

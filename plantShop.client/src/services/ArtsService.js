@@ -1,10 +1,13 @@
+import { AppState } from '../AppState'
+import { ArtModel } from '../models/Art'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class ArtsService {
   async getArts(query) {
-    const res = api.get(`api/arts?${query}`)
-    logger.log(res.data)
+    const res = await api.get(`api/arts?${query}`)
+    logger.log(res.data, 'Arts')
+    AppState.arts = res.data.map(a => new ArtModel(a))
   }
 }
-export const artService = new ArtsService()
+export const artsService = new ArtsService()

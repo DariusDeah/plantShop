@@ -1,10 +1,10 @@
 <template>
-  <div class="col-sm-6 col-lg-3 p-1">
+  <div class="col-sm-6 col-lg-4 p-1">
     <div class="card card-line m-3 card-size   mp-2">
       <i class="mdi mdi-heart fs-1 ps-1 btn text-danger"></i>
-      <router-link :to="{name:'Plant',params:{artId:art.id}}">
-        <img class=" img-fluid img selectable" :src="art.imgs[0]" alt="">
-      </router-link>
+      <!-- <router-link :to="{name:'Plant',params:{artId:art.id}}"> -->
+      <img class=" img-fluid img selectable" :src="art.imgs[0]" alt="">
+      <!-- </router-link> -->
       <div class="card-body bg">
         <h4 class="card-title">
           {{ art.name }}
@@ -23,7 +23,7 @@
 <script>
 export default {
   props: {
-    plant: { type: Object, required: true }
+    art: { type: Object, required: true }
   },
   setup(props) {
     return {

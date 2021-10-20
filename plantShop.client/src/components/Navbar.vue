@@ -23,7 +23,7 @@
             About
           </router-link>
           <router-link :to="{ name: 'Shop' }" class="btn  selectable text-uppercase">
-            Shop
+            Shop Plants
           </router-link>
           <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase">
             Decor
