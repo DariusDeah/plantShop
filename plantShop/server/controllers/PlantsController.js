@@ -18,9 +18,7 @@ export class PlantsController extends BaseController {
 
   getAllPlants = async(req, res) => {
     try {
-      // eslint-disable-next-line prefer-const
-      let query = { ...req.query }
-      const plants = await plantsService.getplants(query)
+      const plants = await plantsService.getplants({ ...req.query })
       res.status(200).send(plants)
     } catch (error) {
       res.send(error)
