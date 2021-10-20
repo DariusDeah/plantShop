@@ -5,8 +5,15 @@
         <h1 class="text-plant-green fw-bold page-title">
           Plant Shop
         </h1>
-        <h3>Indoor</h3>
-        <h3>Outdoor</h3>
+        <h3 class="selectable" @click="getPlantsByQuery('category=Indoor')">
+          Indoor
+        </h3>
+        <h3 class="selectable" @click="getPlantsByQuery('category=Outdoor')">
+          Outdoor
+        </h3>
+        <h3 class="selectable" @click="getPlantsByQuery('')">
+          All
+        </h3>
       </div>
     </div>
   </div>
@@ -27,7 +34,10 @@ export default {
       await plantsService.getPlants()
     })
     return {
-      plants: computed(() => AppState.plants)
+      plants: computed(() => AppState.plants),
+      async getPlantsByQuery(query) {
+        await plantsService.getPlants(query)
+      }
     }
   }
 }

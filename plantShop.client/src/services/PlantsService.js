@@ -4,8 +4,8 @@ import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
 class PlantsService {
-  async getPlants() {
-    const res = await api.get('api/plants')
+  async getPlants(query) {
+    const res = await api.get(`api/plants?${query}`)
     logger.log(res.data)
     AppState.plants = res.data.map(p => new PlantModel(p))
   }
