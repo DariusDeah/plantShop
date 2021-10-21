@@ -1,4 +1,4 @@
-# plantShop v
+# plantShop  v 0.0.1
  e-commerce site where users can buy plants ,plants supplies and home decor as well as leave reviews on purchased items  
  users can also  add items they like into their favorites or  search items by catergories
  
