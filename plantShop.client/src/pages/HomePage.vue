@@ -10,7 +10,7 @@
             <h5 class="fw-bolder fs-1">
               Good Morning,<br> <span class="text-plant-green fs-1"> {{ user.name }} </span>
             </h5>
-            <div class="row mt-5">
+            <div class="row mt-5" v-if="qoute">
               <h3>{{ qoute.text }}</h3>
               <p>-{{ qoute.author }}</p>
             </div>

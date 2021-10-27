@@ -1,19 +1,18 @@
 <template>
   <div class="container ">
-    <h1>ABOUT PAGE YUHH</h1>
     <div class="row">
       <div class="col-12 d-flex header">
         <h1 class="text-plant-green fw-bold page-title">
           Art
         </h1>
         <h3 class="selectable" @click="getArtByQuery('category=New')">
-          New
+          <!-- New -->
         </h3>
         <h3 class="selectable" @click="getArtByQuery('category=Outdoor')">
-          Outdoor
+          <!-- Outdoor -->
         </h3>
         <h3 class="selectable" @click="getArtByQuery('')">
-          All
+          <!-- All -->
         </h3>
       </div>
     </div>

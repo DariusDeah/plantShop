@@ -1,5 +1,5 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { redisClient, DEFUALT_EXPIRATION } from '../RedisHandler'
+// import { redisClient, DEFUALT_EXPIRATION } from '../RedisHandler'
 import { plantsService } from '../services/PlantsService'
 import { reviewsService } from '../services/ReviewsService'
 import BaseController from '../utils/BaseController'

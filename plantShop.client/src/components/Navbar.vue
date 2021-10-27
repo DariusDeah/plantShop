@@ -20,13 +20,10 @@
       <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase">
-            About
+            shop Art
           </router-link>
           <router-link :to="{ name: 'Shop' }" class="btn  selectable text-uppercase">
             Shop Plants
-          </router-link>
-          <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase">
-            Decor
           </router-link>
         </li>
       </ul>
