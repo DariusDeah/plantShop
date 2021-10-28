@@ -10,6 +10,7 @@ class FavoritesService {
     return favorites
   }
 
+  // TODO data is added to database but read speed is impacted
   async addToFavs(favData, creatorId) {
     const origanlFaves = await this.getFavs(creatorId)
     if (origanlFaves === null || undefined) {

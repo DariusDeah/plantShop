@@ -10,5 +10,6 @@ export const AppState = reactive({
   reviews: [],
   currentImg: null,
   cart: null,
-  qoute: null
+  qoute: null,
+  favorites: null
 })

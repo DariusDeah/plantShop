@@ -73,6 +73,7 @@ import FeaturedPlant from '../components/FeaturedPlant.vue'
 import { router } from '../router'
 import { plantsService } from '../services/PlantsService'
 import { qouteService } from '../services/QouteService'
+import { favoritesService } from '../services/FavoritesService'
 export default {
   components: { LoginPage, FeaturedPlant },
   name: 'Home',

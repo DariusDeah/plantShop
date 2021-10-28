@@ -12,7 +12,8 @@
           </div>
           <div class="col-lg-8" v-if="plant.imgs">
             <!-- TODO v-if the current plant id is in the user favorties -->
-            <i class="mdi mdi-heart fs-1 text-danger ps-3"></i>
+            <i class="mdi mdi-heart fs-1 text-danger ps-3" v-if="favorites?.itemIds.includes(plant.id) === true"></i>
+            <i class="mdi mdi-heart-plus-outline fs-1 ps-1 btn text-danger " v-else></i>
             <img :src="currentImg" alt="" class="img-fluid  p-2" id="current-img">
             <div class="row ps-3">
               <div class="col-4 p-0">

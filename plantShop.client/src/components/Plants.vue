@@ -1,7 +1,12 @@
 <template>
   <div class="col-sm-6 col-lg-4 p-1">
-    <div class="card card-line m-3 card-size   mp-2">
-      <i class="mdi mdi-heart fs-1 ps-1 btn text-danger"></i>
+    <div class="card card-line m-3 card-size mp-2">
+      <div v-if="favorites?.itemIds.includes(plant.id) === true">
+        <i class="mdi mdi-heart fs-1 ps-1 btn text-danger"></i>
+      </div>
+      <div v-else>
+        <i class="mdi mdi-heart-plus-outline fs-1 ps-1 btn text-danger "></i>
+      </div>
       <router-link :to="{name:'Plant',params:{plantId:plant.id}}">
         <img class=" img-fluid img selectable" :src="plant.imgs[0]" alt="">
       </router-link>
@@ -21,13 +26,16 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core'
+import { AppState } from '../AppState'
 export default {
   props: {
     plant: { type: Object, required: true }
   },
   setup(props) {
     return {
-      props
+      props,
+      favorites: computed(() => AppState.favorites)
     }
   }
 
@@ -39,6 +47,10 @@ export default {
   height: inherit;
 }
 .mdi-heart{
+  position: absolute;
+z-index: 1;
+}
+.mdi-heart-plus-outline{
   position: absolute;
 z-index: 1;
 }

@@ -5,6 +5,7 @@ import { router } from '../router'
 import { accountService } from './AccountService'
 import { api } from './AxiosService'
 import { cartService } from './CartService'
+import { favoritesService } from './FavoritesService'
 import { socketService } from './SocketService'
 
 export const AuthService = initialize({
@@ -28,6 +29,8 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
   await cartService.addCart()
+  await favoritesService.getFavorites(AppState.account._id)
+
   // NOTE if there is something you want to do once the user is authenticated, place that here
 })
 
