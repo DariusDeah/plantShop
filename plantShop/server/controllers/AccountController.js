@@ -1,17 +1,18 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { accountService } from '../services/AccountService'
 import { cartService } from '../services/CartService'
+import { favoriteService } from '../services/FavoritesService'
 import BaseController from '../utils/BaseController'
 
 export class AccountController extends BaseController {
   constructor() {
     super('account')
     this.router
-      .get('/:accountId/cart', this.getUserCart)
-
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
       .post('/:accountId/favorites', this.addToFavorites)
+      .get('/:accountId/favorites', this.getFavorites)
+      .get('/:accountId/cart', this.getUserCart)
   }
 
   async getUserAccount(req, res, next) {
@@ -34,8 +35,18 @@ export class AccountController extends BaseController {
 
   async addToFavorites(req, res, next) {
     try {
-      const favorite = await accountService.addToFavs()
+      req.body.creatorId = req.userInfo.id
+      const favorite = await favoriteService.addToFavs(req.body, req.params.accountId)
       res.send(favorite)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async getFavorites(req, res, next) {
+    try {
+      const favorites = await favoriteService.getFavs(req.params.accountId)
+      res.send(favorites)
     } catch (error) {
       next(error)
     }

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const CartSchema = new Schema(
   {
-    itemId: [{ type: Schema.Types.ObjectId, required: true }],
+    itemId: [{ type: Schema.Types.ObjectId, required: true, ref: 'Plant' || 'Art' }],
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
     subTotal: { type: Number, default: 0 }
   },

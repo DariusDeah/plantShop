@@ -14,7 +14,6 @@ class CartService {
     const cart = await dbContext.Cart.create(cartData)
     await cart.populate('creator')
     await cart.populate('item')
-
     return cart
   }
 }

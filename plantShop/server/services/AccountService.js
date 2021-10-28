@@ -74,10 +74,5 @@ class AccountService {
     )
     return account
   }
-
-  addToFavs(itemId) {
-    // const favorite = dbContext.Account.schema.childSchemas.push(itemId)
-    // return favorite
-  }
 }
 export const accountService = new AccountService()
