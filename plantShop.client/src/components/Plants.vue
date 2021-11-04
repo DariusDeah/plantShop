@@ -2,7 +2,7 @@
   <div class="col-sm-6 col-lg-4 p-1">
     <div class="card card-line m-3 card-size mp-2">
       <div v-if="favorites?.itemIds.includes(plant.id) === true">
-        <i class="mdi mdi-heart fs-1 ps-1 btn text-danger"></i>
+        <i class="mdi mdi-heart fs-1 ps-1 btn text-danger" @click="removeFav(plant.id)"></i>
       </div>
       <div v-else>
         <i class="mdi mdi-heart-plus-outline fs-1 ps-1 btn text-danger " @click="addToFavs(plant.id)"></i>
@@ -39,6 +39,9 @@ export default {
       favorites: computed(() => AppState.favorites),
       async addToFavs(plantId) {
         await favoritesService.addFavs(plantId, AppState.account._id)
+      },
+      async removeFav(plantId) {
+        await favoritesService.removeFavs(plantId, AppState.account._id)
       }
     }
   }

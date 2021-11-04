@@ -13,6 +13,7 @@ export class AccountController extends BaseController {
       .post('/:accountId/favorites', this.addToFavorites)
       .get('/:accountId/favorites', this.getFavorites)
       .get('/:accountId/cart', this.getUserCart)
+      .delete('/:accountId/favorites', this.removeFav)
   }
 
   async getUserAccount(req, res, next) {
@@ -33,6 +34,15 @@ export class AccountController extends BaseController {
     }
   }
 
+  async getFavorites(req, res, next) {
+    try {
+      const favorites = await favoriteService.getFavs(req.params.accountId)
+      res.send(favorites)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   async addToFavorites(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
@@ -43,10 +53,11 @@ export class AccountController extends BaseController {
     }
   }
 
-  async getFavorites(req, res, next) {
+  async removeFav(req, res, next) {
     try {
-      const favorites = await favoriteService.getFavs(req.params.accountId)
-      res.send(favorites)
+      req.body.creatorId = req.userInfo.id
+      const removedFav = await favoriteService.removeFav(req.params.accountId, req.body)
+      res.send(removedFav)
     } catch (error) {
       next(error)
     }
