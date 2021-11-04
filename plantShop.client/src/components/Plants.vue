@@ -5,7 +5,7 @@
         <i class="mdi mdi-heart fs-1 ps-1 btn text-danger"></i>
       </div>
       <div v-else>
-        <i class="mdi mdi-heart-plus-outline fs-1 ps-1 btn text-danger "></i>
+        <i class="mdi mdi-heart-plus-outline fs-1 ps-1 btn text-danger " @click="addToFavs(plant.id)"></i>
       </div>
       <router-link :to="{name:'Plant',params:{plantId:plant.id}}">
         <img class=" img-fluid img selectable" :src="plant.imgs[0]" alt="">
@@ -28,6 +28,7 @@
 <script>
 import { computed } from '@vue/runtime-core'
 import { AppState } from '../AppState'
+import { favoritesService } from '../services/FavoritesService'
 export default {
   props: {
     plant: { type: Object, required: true }
@@ -35,7 +36,10 @@ export default {
   setup(props) {
     return {
       props,
-      favorites: computed(() => AppState.favorites)
+      favorites: computed(() => AppState.favorites),
+      async addToFavs(plantId) {
+        await favoritesService.addFavs(plantId, AppState.account._id)
+      }
     }
   }
 
@@ -87,5 +91,7 @@ background-color: black;
 .mdi-heart:hover{
   color: #fd0101 !important;
 }
-
+.mdi-heart-plus-outline:hover{
+  color: #fd0101 !important;
+}
 </style>

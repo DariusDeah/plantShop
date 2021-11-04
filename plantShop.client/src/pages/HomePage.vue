@@ -60,7 +60,7 @@
   <div class="container">
     <router-view />
     <div class="row ">
-      <Plants v-for="p in plants" :key="p.id" :plant="p" />
+      <Art v-for="a in arts" :key="a.id" :art="a" />
     </div>
   </div>
 </template>
@@ -74,6 +74,7 @@ import { router } from '../router'
 import { plantsService } from '../services/PlantsService'
 import { qouteService } from '../services/QouteService'
 import { favoritesService } from '../services/FavoritesService'
+import { artsService } from '../services/ArtsService'
 export default {
   components: { LoginPage, FeaturedPlant },
   name: 'Home',
@@ -81,6 +82,7 @@ export default {
     onMounted(async() => {
       await plantsService.getPlants()
       await qouteService.getQoutes()
+      await artsService.getArts()
     })
     return {
       user: computed(() => AppState.user),
@@ -97,7 +99,8 @@ export default {
         router.push({ name: 'Home.Outdoor' })
       },
       plants: computed(() => AppState.plants),
-      qoute: computed(() => AppState.qoute)
+      qoute: computed(() => AppState.qoute),
+      arts: computed(() => AppState.arts)
     }
   }
 }

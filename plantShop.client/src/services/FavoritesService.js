@@ -9,5 +9,12 @@ class FavoritesService {
     logger.log('favs', res.data)
     AppState.favorites = res.data
   }
+
+  async addFavs(itemId, accountId) {
+    const res = await api.post(`account/${accountId}/favorites`, { itemIds: itemId })
+    logger.log(res.data)
+    logger.log(itemId)
+    AppState.favorites = res.data
+  }
 }
 export const favoritesService = new FavoritesService()
