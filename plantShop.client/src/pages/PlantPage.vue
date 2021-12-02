@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-6 p-5" v-if="plant">
         <div class="row  ">
-          <div class="col-lg-3  img-fluid  side-img p-2 " v-if="plant.imgs ">
+          <div class="col-lg-3 img-fluid side-img p-2 " v-if="plant.imgs ">
             <img :src="plant.imgs" alt="" class="card my-2 selectable" @click=" changeImage(0)">
             <img :src="plant.imgs[1]" alt="" class="card my-2 selectable" @click=" changeImage(1)">
             <img :src="plant.imgs[2]" alt="" class="card my-2 selectable" @click=" changeImage(2)">
@@ -14,25 +14,25 @@
             <!-- TODO v-if the current plant id is in the user favorties -->
             <i class="mdi mdi-heart fs-1 text-danger ps-3" v-if="favorites?.itemIds.includes(plant.id) === true"></i>
             <i class="mdi mdi-heart-plus-outline fs-1 ps-1 btn text-danger " v-else></i>
-            <img :src="currentImg" alt="" class="img-fluid  p-2" id="current-img">
+            <img :src="currentImg" alt="" class="img-fluid p-2" id="current-img">
             <div class="row ps-3">
               <div class="col-4 p-0">
-                <p class="text-light fw-bold  pt-2">
-                  <span class="category text-light selectable" v-if="plant.category">
+                <p class="text-light fw-bold pt-2">
+                  <span class="category text-light " v-if="plant.category">
                     {{ plant.category[0] }}
                   </span>
                 </p>
               </div>
               <div class="col-4">
                 <p class="text-light fw-bold  pt-2">
-                  <span class="category text-light selectable" v-if="plant.category.length > 1">
+                  <span class="category text-light " v-if="plant.category.length > 1">
                     {{ plant.category[1] }}
                   </span>
                 </p>
               </div>
               <div class="col-4">
                 <p class="text-light fw-bold ps-2 pt-2">
-                  <span class="category text-light selectable" v-if="plant.category.length >2">
+                  <span class="category text-light" v-if="plant.category.length >2">
                     {{ plant.category[2] }}
                   </span>
                 </p>

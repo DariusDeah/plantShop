@@ -37,6 +37,7 @@ export default {
     return {
       props,
       favorites: computed(() => AppState.favorites),
+
       async addToFavs(plantId) {
         await favoritesService.addFavs(plantId, AppState.account._id)
       },

@@ -8,7 +8,7 @@
         <div class="row pt-3 ps-5 text-overlay pt-5">
           <div class="  col-md-4 text-bg ps-5 ">
             <h5 class="fw-bolder fs-1">
-              Good Morning,<br> <span class="text-plant-green fs-1"> {{ user.name }} </span>
+              Good Morning,<br> <span class="text-plant-green fs-1"> {{ user.nickname }} </span>
             </h5>
             <div class="row mt-5" v-if="qoute">
               <h3>{{ qoute.text }}</h3>

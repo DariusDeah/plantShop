@@ -56,7 +56,7 @@ export class AccountController extends BaseController {
   async removeFav(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      const removedFav = await favoriteService.removeFav(req.params.accountId, req.body)
+      const removedFav = await favoriteService.removeFav(req.body, req.params.accountId)
       res.send(removedFav)
     } catch (error) {
       next(error)

@@ -21,7 +21,9 @@ class FavoritesService {
     logger.log(itemId)
     logger.log(res.data)
     logger.log('remove')
-    AppState.favorites = res.data
+    AppState.favorites.itemIds = AppState.favorites.itemIds.filter(f => f.id !== itemId)
+
+    logger.log(AppState.favorites.itemIds)
   }
 }
 export const favoritesService = new FavoritesService()

@@ -1,8 +1,8 @@
 <template>
   <div class="container ">
     <div class="row">
-      <div class="col-12 d-flex header">
-        <h1 class="text-plant-green fw-bold page-title">
+      <div class="col-lg-12 col d-flex  justify-content-between  header line-btm">
+        <h1 class="  fw-bold ">
           Plant Shop
         </h1>
         <h3 class="selectable" @click="getPlantsByQuery('category=Indoor')">
@@ -11,10 +11,32 @@
         <h3 class="selectable" @click="getPlantsByQuery('category=Outdoor')">
           Outdoor
         </h3>
+        <h3 class="selectable" @click="getPlantsByQuery('category=New')">
+          New
+        </h3>
+        <h3 class="selectable" @click="getPlantsByQuery('category=Popular')">
+          Popular
+        </h3>
         <h3 class="selectable" @click="getPlantsByQuery('')">
           All
         </h3>
       </div>
+    </div>
+  </div>
+  <div class="container-fluid pt-4">
+    <div class=" bg-primary d-flex p-3 justify-content-between text-light">
+      <h4 class="selectable">
+        Plants
+      </h4>
+      <h4 class="selectable">
+        Accessories
+      </h4>
+      <h4 class="selectable">
+        Kits
+      </h4>
+      <h4 class="selectable">
+        Starters
+      </h4>
     </div>
   </div>
   <div class="container">

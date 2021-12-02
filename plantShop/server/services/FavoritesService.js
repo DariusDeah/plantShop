@@ -26,13 +26,12 @@ class FavoritesService {
       }, {
         $addToSet: { itemIds: favData.itemIds }
       })
-      logger.log(favorite.id)
-      logger.log(favorite)
+
       return favorite
     }
   }
 
-  async removeFav(accountId, favData) {
+  async removeFav(favData, accountId) {
     if (favData.creatorId !== accountId.toString()) {
       throw new Forbidden()
     }
