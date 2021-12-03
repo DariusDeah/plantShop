@@ -24,14 +24,13 @@ class FavoritesService {
       const favorite = await dbContext.Favorites.findOneAndUpdate({
         creatorId: favData.creatorId
       }, {
-        $addToSet: { itemIds: favData.itemIds }
+        $push: { itemIds: favData.itemIds }
       })
-
       return favorite
     }
   }
 
-  async removeFav(favData, accountId) {
+  async removeFav(favData, itemId, accountId) {
     if (favData.creatorId !== accountId.toString()) {
       throw new Forbidden()
     }
@@ -39,9 +38,8 @@ class FavoritesService {
     const removed = await dbContext.Favorites.findOneAndUpdate({
       creatorId: favData.creatorId
     }, {
-      $pull: { itemIds: favData.itemIds }
+      $pull: { itemIds: itemId }
     })
-
     return removed
   }
 }

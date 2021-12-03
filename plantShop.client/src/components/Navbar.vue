@@ -25,9 +25,6 @@
           <router-link :to="{ name: 'Shop' }" class="btn  selectable text-uppercase">
             Shop Plants
           </router-link>
-          <router-link class="btn selectable test-uppercase">
-            Sell
-          </router-link>
         </li>
       </ul>
 

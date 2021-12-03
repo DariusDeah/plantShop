@@ -3,6 +3,7 @@ import { accountService } from '../services/AccountService'
 import { cartService } from '../services/CartService'
 import { favoriteService } from '../services/FavoritesService'
 import BaseController from '../utils/BaseController'
+import { logger } from '../utils/Logger'
 
 export class AccountController extends BaseController {
   constructor() {
@@ -13,7 +14,7 @@ export class AccountController extends BaseController {
       .post('/:accountId/favorites', this.addToFavorites)
       .get('/:accountId/favorites', this.getFavorites)
       .get('/:accountId/cart', this.getUserCart)
-      .delete('/:accountId/favorites', this.removeFav)
+      .delete('/:accountId/favorites/:itemId', this.removeFav)
   }
 
   async getUserAccount(req, res, next) {
@@ -56,7 +57,8 @@ export class AccountController extends BaseController {
   async removeFav(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      const removedFav = await favoriteService.removeFav(req.body, req.params.accountId)
+      logger.log(req.body)
+      const removedFav = await favoriteService.removeFav(req.body, req.params.itemId, req.params.accountId)
       res.send(removedFav)
     } catch (error) {
       next(error)
