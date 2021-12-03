@@ -19,9 +19,8 @@ class FavoritesService {
   async removeFavs(itemId, accountId) {
     const res = await api.delete(`account/${accountId}/favorites/${itemId}`)
     logger.log('remove')
-    AppState.favorites = AppState.favorites.itemIds.filter(f => f.id !== itemId)
-
-    logger.log(AppState.favorites.itemIds)
+    AppState.favorites.itemIds = AppState.favorites.itemIds.filter(f => f.id !== itemId)
+    logger.warn('THE STUFF', AppState.favorites.itemIds[1])
   }
 }
 export const favoritesService = new FavoritesService()

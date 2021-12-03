@@ -2,11 +2,11 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 export const ReviewSchema = new Schema({
-  rating: { type: Number, enum: [0, 1, 2, 3, 4, 5], required: true },
+  rating: { type: Number, min: 0, max: 5, required: true['Enter a valid number'] },
   title: { type: String },
-  body: { type: String, required: true },
+  body: { type: String, required: true['Review must have content'] },
   creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
-  plantId: { type: Schema.Types.ObjectId, required: true, ref: 'Plant' },
+  itemId: { type: Schema.Types.ObjectId, required: true },
   deleted: { type: Boolean, default: false }
 }, { timestamps: true, toJSON: { virtuals: true } })
 
@@ -17,4 +17,8 @@ ReviewSchema.virtual('creator', {
   ref: 'Account'
 })
 // FIXME
-ReviewSchema.index({ plantId: 1, creator1: 1 }, { unique: true })
+ReviewSchema.index({ itemId: 1, creatorId: 1 }, { unique: true })
+ReviewSchema.pre(/^find/, function(next) {
+  this.select('-deleted')
+  next()
+})
