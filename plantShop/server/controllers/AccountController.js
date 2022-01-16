@@ -12,6 +12,7 @@ export class AccountController extends BaseController {
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
       .post('/:accountId/favorites', this.addToFavorites)
+      .post('/:accountId/cart', this.addToCart)
       .get('/:accountId/favorites', this.getFavorites)
       .get('/:accountId/cart', this.getUserCart)
       .delete('/:accountId/favorites/:itemId', this.removeFav)
@@ -21,6 +22,17 @@ export class AccountController extends BaseController {
     try {
       const account = await accountService.getAccount(req.userInfo)
       res.send(account)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async addToCart(req, res, next) {
+    try {
+      req.body.creatorId = req.userInfo.id
+      logger.log(req.body)
+      const cartItem = await cartService.addItem(req.body, req.params.accountId)
+      res.send(cartItem)
     } catch (error) {
       next(error)
     }
@@ -57,7 +69,7 @@ export class AccountController extends BaseController {
   async removeFav(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      logger.log(req.body)
+      // logger.log(req.body)
       const removedFav = await favoriteService.removeFav(req.body, req.params.itemId, req.params.accountId)
       res.send(removedFav)
     } catch (error) {

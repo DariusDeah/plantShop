@@ -7,7 +7,7 @@ export const FavoritesSchema = new Schema({
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 FavoritesSchema.virtual('item', {
-  localField: 'itemId',
+  localField: 'itemIds',
   foreignField: '_id',
   justOne: true,
   ref: 'Plant' || 'Art'

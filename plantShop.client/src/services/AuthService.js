@@ -28,8 +28,8 @@ AuthService.on(AuthService.AUTH_EVENTS.AUTHENTICATED, async function() {
   AppState.user = AuthService.user
   await accountService.getAccount()
   socketService.authenticate(AuthService.bearer)
-  await cartService.addCart()
   await favoritesService.getFavorites(AppState.account._id)
+  await cartService.getCart(AppState.account._id)
 
   // NOTE if there is something you want to do once the user is authenticated, place that here
 })

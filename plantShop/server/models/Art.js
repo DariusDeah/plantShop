@@ -18,3 +18,8 @@ ArtSchema.virtual('creator', {
   justOne: true,
   ref: 'Account'
 })
+ArtSchema.pre(/^find/, function(next) {
+  this.find({ deleted: false })
+  this.select('-deleted')
+  next()
+})

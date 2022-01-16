@@ -12,14 +12,6 @@ class PlantsService {
       query = query.sort()
     }
 
-    // if (redisClient.get('plants')) {
-    //   const plants = await redisClient.get('plants')
-    //   logger.log('HIT')
-    //   return plants
-    // }
-    // if (redisClient.get('plants') === false) {
-    //   redisClient.setex('plants', DEFUALT_EXPIRATION, JSON.stringify(plants))
-    // }
     const plants = await dbContext.Plants.find(query)
     return plants
   }

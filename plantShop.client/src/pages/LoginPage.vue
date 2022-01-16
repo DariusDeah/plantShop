@@ -40,7 +40,7 @@ import { AuthService } from '../services/AuthService'
 import { useRouter } from 'vue-router'
 import { router } from '../router'
 import Pop from '../utils/Pop'
-
+// import cartService from '../services/CartService'
 export default {
   setup() {
     onMounted(async() => {
@@ -52,6 +52,7 @@ export default {
       async login() {
         try {
           await AuthService.loginWithPopup()
+          // await cartService
           router.push('home')
         } catch (error) {
           Pop.toast(error, 'please try again')

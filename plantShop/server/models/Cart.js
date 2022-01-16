@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 
 export const CartSchema = new Schema(
   {
-    itemId: [{ type: Schema.Types.ObjectId, required: true, ref: 'Plant' || 'Art' }],
+    itemId: [{ type: Schema.Types.ObjectId, ref: 'Plant' || 'Art' }],
     creatorId: { type: Schema.Types.ObjectId, required: true, ref: 'Account' },
     subTotal: { type: Number, default: 0 }
   },
@@ -22,3 +22,4 @@ CartSchema.virtual('item', {
   justOne: true,
   ref: 'Plant' || 'Art'
 })
+CartSchema.index({ creatorId: 1, subTotal: -1 })

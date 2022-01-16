@@ -159,7 +159,7 @@ export default {
       },
       async addToCart() {
         try {
-          await cartService.addCart(route.params.plantId)
+          await cartService.addCart(route.params.plantId, AppState.account._id)
         } catch (error) {
           Pop.toast('error', error)
         }

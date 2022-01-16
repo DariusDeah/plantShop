@@ -27,3 +27,9 @@ PlantSchema.virtual('creator', {
   justOne: true,
   ref: 'Account'
 })
+
+PlantSchema.pre(/^find/, function(next) {
+  this.find({ deleted: false })
+  this.select('-delete')
+  next()
+})
