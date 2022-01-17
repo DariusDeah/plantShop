@@ -19,7 +19,9 @@ CartSchema.virtual('creator', {
 CartSchema.virtual('item', {
   localField: 'itemId',
   foreignField: '_id',
-  justOne: true,
   ref: 'Plant' || 'Art'
 })
-CartSchema.index({ creatorId: 1, subTotal: -1 })
+// CartSchema.index({ creatorId: 1, subTotal: -1 })
+// CartSchema.pre('save', function(next) {
+
+// })

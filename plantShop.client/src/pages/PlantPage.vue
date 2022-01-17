@@ -48,11 +48,19 @@
           <h2>${{ plant.price }}</h2>
         </div>
         <div class="row">
-          <button class="btn cart-btn text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addToCart()">
-            ${{ plant.price }} - Add to cart
+          <button v-if="cart?.itemId.includes(plant.id) === true" class="btn  btn-danger text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addToCart()">
+            Remove from cart
+          </button>
+          <button v-else class="btn cart-btn text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addToCart()">
+            $ {{ plant.price }} - Add to cart
           </button>
         </div>
-        <div class="modal fade x" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade x"
+             id="exampleModal"
+             tabindex="-1"
+             aria-labelledby="exampleModalLabel"
+             aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -62,9 +70,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <!-- TODO v-for items in cart -->
+                <!-- <Item v-for="i in item" :key="i.id" :item="p" />
+                <h6>{{ item[i]?.name }}</h6> -->
+                <Cart v-for="i in item" :key="i.id" :item="i" />
               </div>
               <div class="modal-footer ">
+                <div>
+                  <h5>total: {{ cart?.subTotal }}</h5>
+                </div>
                 <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">
                   Close
                 </button>
@@ -149,6 +162,8 @@ export default {
       plant: computed(() => AppState.activePlant),
       reviews: computed(() => AppState.reviews),
       currentImg: computed(() => AppState.currentImg),
+      cart: computed(() => AppState.cart),
+      item: computed(() => AppState.cart?.item),
 
       async changeImage(i) {
         try {
@@ -160,6 +175,7 @@ export default {
       async addToCart() {
         try {
           await cartService.addCart(route.params.plantId, AppState.account._id)
+          await cartService.getCart(AppState.account._id)
         } catch (error) {
           Pop.toast('error', error)
         }

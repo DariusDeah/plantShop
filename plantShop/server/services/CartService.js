@@ -42,7 +42,7 @@ class CartService {
   async addItem(itemId, accountId) {
     const cart = await dbContext.Cart.updateOne(
       { creatorId: accountId },
-      { $push: { itemId: itemId.itemId } }
+      { $addToSet: { itemId: itemId.itemId } }
     )
     return cart
   }

@@ -17,7 +17,8 @@ export const PlantSchema = new Schema({
   qty: { type: Number, required: true, min: 1 },
   stock: { type: Number, required: true },
   creatorId: { type: Schema.Types.ObjectId, ref: 'Account' },
-  deleted: { type: Boolean, default: false }
+  deleted: { type: Boolean, default: false },
+  subTotal: { type: Number, min: 0, default: this.price }
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
@@ -30,6 +31,11 @@ PlantSchema.virtual('creator', {
 
 PlantSchema.pre(/^find/, function(next) {
   this.find({ deleted: false })
-  this.select('-delete')
+  this.select('-deleted')
+  next()
+})
+PlantSchema.post('save', function(next) {
+  if (this.qty <= 0) return next()
+  this.subTotal = this.qty * this.price
   next()
 })

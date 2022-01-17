@@ -5,6 +5,7 @@ import { api } from './AxiosService'
 class CartService {
   async getCart(accountId) {
     const res = await api.get(`account/${accountId}/cart`)
+    logger.log(res.data)
     AppState.cart = res.data
   }
 
