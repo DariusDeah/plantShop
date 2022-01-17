@@ -13,6 +13,7 @@ class PlantsService {
     }
 
     const plants = await dbContext.Plants.find(query)
+
     return plants
   }
 
@@ -22,10 +23,13 @@ class PlantsService {
     if (!plant) {
       throw new BadRequest()
     }
+    plant.subTotal = plant.price * plant.qty
+
     return plant
   }
 
   createPlant = async(plantBody) => {
+    plantBody.subTotal = plantBody.price * plantBody.qty
     const createdPlant = await dbContext.Plants.create(plantBody)
     await createdPlant.populate('creator')
     return createdPlant
@@ -45,13 +49,15 @@ class PlantsService {
     // #region PLANT DATA
     editedPlant.name = plantBody.name || editedPlant.name
     editedPlant.price = plantBody.price || editedPlant.price
-    editedPlant.description = plantBody.description || editedPlant.desription
+    editedPlant.description = plantBody.description || editedPlant.description
     editedPlant.category = plantBody.category || editedPlant.category
     editedPlant.img = plantBody.img || editedPlant.img
     editedPlant.details = plantBody.details || editedPlant.details
     editedPlant.qty = plantBody.qty || editedPlant.qty
     editedPlant.stock = plantBody.stock || editedPlant.stock
+
     // #endregion
+    editedPlant.subTotal = plantBody.price * plantBody.qty || plantBody.editedPlant.price * editedPlant.qty
     await editedPlant.save()
     return editedPlant
   }

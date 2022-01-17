@@ -18,7 +18,7 @@ export const PlantSchema = new Schema({
   stock: { type: Number, required: true },
   creatorId: { type: Schema.Types.ObjectId, ref: 'Account' },
   deleted: { type: Boolean, default: false },
-  subTotal: { type: Number, min: 0, default: this.price }
+  subTotal: { type: Number, min: 0 }
 
 }, { timestamps: true, toJSON: { virtuals: true } })
 
@@ -34,8 +34,9 @@ PlantSchema.pre(/^find/, function(next) {
   this.select('-deleted')
   next()
 })
-PlantSchema.post('save', function(next) {
-  if (this.qty <= 0) return next()
-  this.subTotal = this.qty * this.price
-  next()
-})
+// PlantSchema.pre(/^find/, function(next) {
+//   if (this.qty <= 0) return next()
+//   const total = this.qty * this.price
+//   this.subTotal = total
+//   next()
+// })

@@ -13,6 +13,7 @@ export class PlantModel {
     this.qty = plantData.qty
     this.stock = plantData.stock
     this.updatedAt = plantData.updatedAt
+    this.subTotal = plantData.subTotal
   }
 }
 

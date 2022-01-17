@@ -9,6 +9,7 @@ class CartService {
       return cart
     }
     await cart.populate('item')
+
     return cart
   }
 
@@ -16,29 +17,7 @@ class CartService {
     const cart = await dbContext.Cart.create({ creatorId: accountId })
     return cart
   }
-  // FIXME current is that the create tries to find a current existing cart except there is no curret existing cart so an error is always thrown
-  // async createCart(cartData, accountId) {
-  //   const currentCart = await this.getCart(accountId)
-  //   if (currentCart === null || undefined) {
-  //     const cart = await dbContext.Cart.create(cartData)
-  //     await cart.populate('creator')
-  //     await cart.populate('item')
-  //     logger.log('hitttt 1')
 
-  //     return cart
-  //   }
-  //   if (currentCart.creatorId.toString() === cartData.creatorId.toString()) {
-  //     const cart = await dbContext.Cart.findByIdAndUpdate({
-  //       creatorId: cartData.creatorId
-  //     }, {
-  //       $push: { itemId: cartData.itemId }
-  //     })
-  //     logger.log('hitttt 2')
-  //     return cart
-  //   }
-  // }
-
-  // i took the add to cart logic from the other function
   async addItem(itemId, accountId) {
     const cart = await dbContext.Cart.updateOne(
       { creatorId: accountId },
