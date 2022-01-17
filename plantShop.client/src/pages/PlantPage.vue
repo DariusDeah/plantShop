@@ -48,7 +48,7 @@
           <h2>${{ plant.price }}</h2>
         </div>
         <div class="row">
-          <button v-if="cart?.itemId.includes(plant.id) === true" class="btn  btn-danger text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addToCart()">
+          <button v-if="cart?.itemId.includes(plant.id) === true" class="btn  btn-danger text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="removeFromCart()">
             Remove from cart
           </button>
           <button v-else class="btn cart-btn text-white p-3 mt-4 m fw-bold" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="addToCart()">
@@ -175,6 +175,14 @@ export default {
       async addToCart() {
         try {
           await cartService.addCart(route.params.plantId, AppState.account._id)
+          await cartService.getCart(AppState.account._id)
+        } catch (error) {
+          Pop.toast('error', error)
+        }
+      },
+      async removeFromCart() {
+        try {
+          await cartService.removeItem(route.params.plantId, AppState.account._id)
           await cartService.getCart(AppState.account._id)
         } catch (error) {
           Pop.toast('error', error)

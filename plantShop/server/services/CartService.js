@@ -48,11 +48,10 @@ class CartService {
   }
 
   async removeItem(itemId, accountId) {
-    const cart = await this.getCart(accountId)
-    await cart.update({
-      $pull: { itemId: itemId.itemId }
-    })
-    await cart.save()
+    const cart = await dbContext.Cart.updateOne(
+      { creatorId: accountId },
+      { $pull: { itemId: itemId } }
+    )
     return cart
   }
 

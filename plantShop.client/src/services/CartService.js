@@ -17,5 +17,9 @@ class CartService {
     // AppState.cart = res.data
     // logger.log(AppState.cart)
   }
+
+  async removeItem(itemId, accountId) {
+    const res = await api.delete(`account/${accountId}/cart/${itemId}`)
+  }
 }
 export const cartService = new CartService()
