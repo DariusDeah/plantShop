@@ -53,7 +53,7 @@
   <section class="container banner px-1 mt-4 mb-4 ">
     <div class="row  banner-row ">
       <div class="col d-flex  p-3 fw-bolder justify-content-center ">
-        <span class="art ">ART</span> <span>|</span> <span class="decor ">DECOR</span>
+        <span class="art ">ART</span>
       </div>
     </div>
   </section>

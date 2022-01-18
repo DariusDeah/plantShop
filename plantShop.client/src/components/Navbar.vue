@@ -81,9 +81,9 @@
         </div>
       </span>
     </div>
-    <!-- <router-link :to="{ name: 'About' }" class="btn  selectable text-uppercase"> -->
-    <i class="fab fa-opencart"></i>
-    <!-- </router-link> -->
+    <router-link :to="{ name: 'Cart' }" class="btn  selectable text-uppercase">
+      <i class="fab fa-opencart"></i>
+    </router-link>
   </nav>
 </template>
 

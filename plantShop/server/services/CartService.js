@@ -9,6 +9,11 @@ class CartService {
       return cart
     }
     await cart.populate('item')
+    logger.log(cart)
+    for (let i = 0; i < cart.item.length; i++) {
+      cart.item[i].subTotal = cart.item[i].price * cart.item[i].qty
+      cart.subTotal += cart.item[i].subTotal
+    }
 
     return cart
   }
@@ -21,7 +26,7 @@ class CartService {
   async addItem(itemId, accountId) {
     const cart = await dbContext.Cart.updateOne(
       { creatorId: accountId },
-      { $addToSet: { itemId: itemId.itemId } }
+      { $push: { itemId: itemId.itemId } }
     )
     return cart
   }

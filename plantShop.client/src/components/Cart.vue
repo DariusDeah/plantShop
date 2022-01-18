@@ -1,16 +1,36 @@
 <template>
-  <div class="card pt-2  m-2 ">
-    <img class="card-img-top img" :src="item.imgs" alt="">
-    <div class="card-body d-flex ">
-      <h4 class="card-title">
-        {{ item?.name }}
-        size - {{ item.details.size }}
-      </h4>
-      <p class="card-text">
-        price- ${{ item.price }}
-        qty - {{ item.qty }}
-        subtotal - {{ item.subTotal }}
-      </p>
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img :src="item.imgs" alt="" class="img-fluid rounded-start">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            {{ item?.name }} - {{ item.details.size }}
+          </h5>
+          <p class="card-text">
+          </p>
+          <div>
+            price- ${{ item.price }}
+          </div>
+          <br />
+          <div>
+            qty - {{ item.qty }}
+          </div>
+          <br />
+
+          <div>
+            subtotal - {{ item.subTotal }}
+          </div>
+          <br />
+          <p class="card-text">
+            <small class="text-muted">
+              remove
+            </small>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>

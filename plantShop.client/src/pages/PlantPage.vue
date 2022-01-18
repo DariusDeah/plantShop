@@ -55,7 +55,7 @@
             $ {{ plant.price }} - Add to cart
           </button>
         </div>
-        <div class="modal fade x"
+        <div class="modal fade x "
              id="exampleModal"
              tabindex="-1"
              aria-labelledby="exampleModalLabel"
@@ -81,8 +81,10 @@
                 <button type="button" class="btn btn-secondary text-light" data-bs-dismiss="modal">
                   Close
                 </button>
-                <button type="button" class="btn cart-btn text-light">
-                  Go to cart
+                <button type="button" class="btn cart-btn text-light" data-bs-dismiss="modal">
+                  <router-link :to="{ name: 'Cart' }">
+                    Go to cart
+                  </router-link>
                 </button>
               </div>
             </div>
